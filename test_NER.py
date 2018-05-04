@@ -68,5 +68,5 @@ with tf.Session() as sess:
 		PadZeroBegin=FlagsDict['PadZeroBegin'],max_length = FlagsDict['sequence_length'],
 		test_path=test_path, dropout_keep_prob=FlagsDict['dropout_keep_prob'],step=1,
 		out_dir=out_dir,char_alphabet=char_alphabet,label_alphabet=label_alphabet,
-		word_alphabet=word_alphabet,word_column=FlagsDict['word_col'], label_column=FlagsDict['label_col'], char_embedd_dim=FlagsDict['char_embedd_dim'],max_char_per_word=FlagsDict['max_char_per_word'])
+		word_alphabet=word_alphabet,word_column=FlagsDict['word_col'], label_column=FlagsDict['label_col'], char_embedd_dim=FlagsDict['char_embedd_dim'],max_char_per_word=FlagsDict['max_char_per_word'])'''
 
