@@ -283,14 +283,14 @@ def viterbi_decode(logits,transition_params,seq_length,x_batch,word_alphabet,lab
   fname = prefix_filename + "_Predictions.txt"
   with open(fname, 'w') as outfile:
     outfile.write("word\ty_label\tpred_label\n")
-    for tf_unary_scores_,sequence_length_, x_,targetWordIndex in zip(logits, seq_length,x_batch,targetWordIndexArray):
+    for tf_unary_scores_,sequence_length_, x_ in zip(logits, seq_length,x_batch):
         # Remove padding from the scores and tag sequence.
         tf_unary_scores_ = tf_unary_scores_[-sequence_length_:] if beginZero else tf_unary_scores_[:sequence_length_] 
         x_ = x_[-sequence_length_:] if beginZero else x_[:sequence_length_]
         # Compute the highest scoring sequence.
         viterbi_sequence, viterbi_score = tf.contrib.crf.viterbi_decode(
               tf_unary_scores_, transition_params)
-        for xi,yi,vi in zip(x_,viterbi_sequence):
+        for xi,vi in zip(x_,viterbi_sequence):
             x_word = word_alphabet.get_instance(xi)
             pred_label = label_alphabet.get_instance(vi)
             outfile.write(str(x_word) + "\t"+str(pred_label)+"\n")
